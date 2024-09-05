@@ -1,27 +1,31 @@
 {
-  "name": "inzynierka-backend",
-  "version": "1.0.0",
-  "description": "Backend server for leave managment aplication for my Engineering Thesis",
-  "main": "src/index.ts",
-  "packageManager": "yarn@4.3.1",
-  "scripts": {
-    "build": "tsc",
-    "start": "node dist/index.js",
-    "dev": "ts-node src/index.ts"
-  },
-  "dependencies": {
-    "typescript": "^5.5.4"
-  },
-  "devDependencies": {
-    "@eslint/js": "^9.9.1",
-    "@types/eslint": "^9",
-    "@types/node": "^22.5.4",
-    "eslint": "^9.9.1",
-    "globals": "^15.9.0",
-    "ts-node": "^10.9.2",
-    "typescript": "^5.5.4",
-    "typescript-eslint": "^8.4.0"
-  },
-  "author": "Mateusz Topczewski",
-  "license": "ISC"
+    "name": "inzynierka-backend",
+    "version": "1.0.0",
+    "description": "Backend server for leave managment aplication for my Engineering Thesis",
+    "main": "src/index.ts",
+    "packageManager": "yarn@4.3.1",
+    "scripts": {
+        "build": "tsc",
+        "start": "node dist/index.js",
+        "dev": "ts-node src/index.ts",
+        "lint": "eslint src/**/*.ts",
+        "lint:fix": "eslint src/**/*.ts -c .eslintrc --fix"
+    },
+    "dependencies": {
+        "typescript": "^5.5.4"
+    },
+    "devDependencies": {
+        "@eslint/js": "^9.9.1",
+        "@types/eslint": "^9",
+        "@types/node": "^22.5.4",
+        "eslint": "^9.9.1",
+        "eslint-config-prettier": "^9.1.0",
+        "globals": "^15.9.0",
+        "prettier": "3.3.3",
+        "ts-node": "^10.9.2",
+        "typescript": "^5.5.4",
+        "typescript-eslint": "^8.4.0"
+    },
+    "author": "Mateusz Topczewski",
+    "license": "ISC"
 }
