@@ -1,0 +1,44 @@
+# Visual Studio Code
+.vscode/*
+
+# Logs
+logs/
+
+# Dependency directories
+node_modules/
+jspm_packages/
+
+# Dist
+dist/
+bin/
+lib/
+
+# Optional npm cache directory
+.npm
+
+# TypeScript cache
+*.tsbuildinfo
+
+# Optional stylelint cache
+.stylelintcache
+
+# Yarn Integrity file
+.yarn-integrity
+
+# dotenv environment variable files
+.env
+
+# Cache
+.cache
+
+# yarn v2
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+.pnp.*
+
+# tests
+coverage/
