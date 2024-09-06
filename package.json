@@ -3,15 +3,18 @@
     "version": "1.0.0",
     "description": "Backend server for leave managment aplication for my Engineering Thesis",
     "main": "src/index.ts",
+    "type": "module",
     "packageManager": "yarn@4.3.1",
     "scripts": {
-        "build": "tsc",
-        "start": "node dist/index.js",
-        "dev": "ts-node src/index.ts",
         "lint": "eslint src/**/*.ts",
-        "lint:fix": "eslint src/**/*.ts -c .eslintrc --fix"
+        "lint:fix": "eslint src/**/*.ts -c .eslintrc --fix",
+        "build": "tsc",
+        "start:dev": "tsx src/index.ts",
+        "start:dev:watch": "nodemon",
+        "start:prod": "node dist/index.js"
     },
     "dependencies": {
+        "nodemon": "^3.1.4",
         "typescript": "^5.5.4"
     },
     "devDependencies": {
@@ -22,7 +25,7 @@
         "eslint-config-prettier": "^9.1.0",
         "globals": "^15.9.0",
         "prettier": "3.3.3",
-        "ts-node": "^10.9.2",
+        "tsx": "^4.19.0",
         "typescript": "^5.5.4",
         "typescript-eslint": "^8.4.0"
     },
