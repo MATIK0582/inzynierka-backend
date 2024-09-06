@@ -1,3 +1,8 @@
-import { existsSync } from 'fs';
+import 'dotenv/config';
+import { AddressInfo } from 'net';
+import { app } from './app';
 
-console.log(existsSync);
+const server = app.listen(Number(process.env.APP_PORT), process.env.HOSTNAME || '127.0.0.1', () => {
+    const { port, address } = server.address() as AddressInfo;
+    return console.log(`Express server is listening at ${address}:${port} 🚀`);
+});
