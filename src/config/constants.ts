@@ -1,0 +1,16 @@
+export const MAX_NAME_LENGTH = 20;
+
+export const MAX_SURNAME_LENGTH = 20;
+
+export const MAX_EMAIL_LENGTH = 320;
+
+export const MAX_PASSWORD_LENGTH = 255;
+
+export const MAX_GROUP_NAME_LENGTH = 50;
+
+export const MAX_DESCRIPTION_LENGTH = 255;
+
+export const DEFAULT_AVAILABLE_HOLIDAYS = 26;
+
+export const DEFAULT_AVAILABLE_HOLIDAYS_UPON_REQUEST = 4;
+
