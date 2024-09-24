@@ -1,9 +1,6 @@
 import { defineConfig } from 'drizzle-kit';
-import postgres from 'postgres';
 
-import { database_url } from '../../utils/database/url';
-
-export const migrationClient = postgres(database_url, { max: 1 });
+import { database_url } from '../../utils/constants';
 
 export default defineConfig({
     schema: './src/models/*.ts',

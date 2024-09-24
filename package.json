@@ -12,7 +12,8 @@
         "start:dev": "tsx src/index.ts",
         "start:dev:watch": "nodemon",
         "start:prod": "node dist/index.js",
-        "db:generate": "drizzle-kit generate --config=./src/config/database/drizzle.config.ts"
+        "db:generate": "drizzle-kit generate --config=./src/config/database/drizzle.config.ts",
+        "db:studio": "drizzle-kit studio --port 3001 --verbose --config=./src/config/database/drizzle.config.ts"
     },
     "dependencies": {
         "dotenv": "^16.4.5",

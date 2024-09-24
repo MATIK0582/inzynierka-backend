@@ -5,7 +5,7 @@ import { users } from './users.model';
 import { Statuses } from '../utils/database/models/statuses';
 import { HolidayType } from '../utils/database/models/holidayTypes';
 import { enumToPgEnum } from '../utils/database/enums';
-import { MAX_DESCRIPTION_LENGTH } from '../config/constants';
+import { MAX_DESCRIPTION_LENGTH } from '../utils/constants';
 
 export const statusEnum = pgEnum('status', enumToPgEnum(Statuses));
 export const holidayTypeEnum = pgEnum('holiday_type', enumToPgEnum(HolidayType));

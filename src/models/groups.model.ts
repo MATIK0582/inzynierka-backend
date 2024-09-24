@@ -1,7 +1,7 @@
 import { uuid, pgTable, varchar, timestamp } from 'drizzle-orm/pg-core';
 
 import { users } from './users.model';
-import { MAX_GROUP_NAME_LENGTH } from '../config/constants';
+import { MAX_GROUP_NAME_LENGTH } from '../utils/constants';
 
 // @FIXME: Need further investigation
 export const groups = pgTable('groups', {
