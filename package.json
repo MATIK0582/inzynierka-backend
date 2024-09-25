@@ -13,6 +13,7 @@
         "start:dev:watch": "nodemon",
         "start:prod": "node dist/index.js",
         "db:generate": "drizzle-kit generate --config=./src/config/database/drizzle.config.ts",
+        "db:migrate": "tsx src/migrate.ts",
         "db:studio": "drizzle-kit studio --port 3001 --verbose --config=./src/config/database/drizzle.config.ts"
     },
     "dependencies": {

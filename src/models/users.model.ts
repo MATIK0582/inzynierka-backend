@@ -1,6 +1,8 @@
 import { uuid, timestamp, pgTable, pgEnum, varchar } from 'drizzle-orm/pg-core';
 import { relations } from 'drizzle-orm';
 
+import { groups } from './groups.model';
+import { userGroups } from './userGroups.model';
 import { holidays } from './holidays.model';
 import { availableHolidays } from './availableHolidays.model';
 import { Roles } from '../utils/database/models/roles';
@@ -23,6 +25,8 @@ export const users = pgTable('users', {
 export type UsersTypes = typeof users.$inferInsert;
 
 export const usersRelations = relations(users, ({ one, many }) => ({
+    leadsGroup: one(groups),
+    userGroups: many(userGroups),
     availableHolidays: one(availableHolidays),
     holidays: many(holidays),
 }));
