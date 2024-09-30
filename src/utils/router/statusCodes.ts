@@ -2,6 +2,7 @@ export enum HTTP_CODES {
     OK = 200,
     CREATED = 201,
     BAD_REQUEST = 400,
+    UNAUTHORIZED = 401,
     FORBIDDEN = 403,
     NOT_FOUND = 404,
     METHOD_NOT_ALLOWED = 405,
@@ -51,6 +52,13 @@ export const STATUS_CODES: StatusCodes = {
             statusCode: 400,
             statusMessage: '400 Bad Request',
             message: 'Server cannot or will not process the request.',
+        },
+    },
+    401: {
+        json: {
+            statusCode: 401,
+            statusMessage: '401 Unauthorized',
+            message: 'Invalid credentials sent.',
         },
     },
     403: {
