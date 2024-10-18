@@ -12,7 +12,7 @@ export const availableHolidays = pgTable('available_holidays', {
     holiday: smallint('holiday').default(DEFAULT_AVAILABLE_HOLIDAYS),
     holidayUponRequest: smallint('holiday_upon_request').default(DEFAULT_AVAILABLE_HOLIDAYS_UPON_REQUEST),
     createdAt: timestamp('created_at').defaultNow().notNull(),
-    updatedAt: timestamp('updated_at').defaultNow().notNull(),
+    updatedAt: timestamp('updated_at').defaultNow().notNull().$onUpdate(() => new Date()),
 });
 
 export const availableHolidaysRelations = relations(availableHolidays, ({ one }) => ({

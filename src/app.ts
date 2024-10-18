@@ -1,4 +1,5 @@
 import express, { type Express } from 'express';
+import cookieParser from 'cookie-parser';
 
 import { router } from './api/routes';
 
@@ -11,5 +12,7 @@ app.use(
 );
 
 app.use(express.json());
+
+app.use(cookieParser());
 
 app.use('/', router);

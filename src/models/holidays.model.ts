@@ -21,7 +21,7 @@ export const holidays = pgTable('holidays', {
     holidayType: holidayTypeEnum('holiday_type').notNull(),
     status: statusEnum('status').notNull(),
     createdAt: timestamp('created_at').defaultNow().notNull(),
-    updatedAt: timestamp('updated_at').defaultNow().notNull(),
+    updatedAt: timestamp('updated_at').defaultNow().notNull().$onUpdate(() => new Date()),
 });
 
 export const holidaysRelations = relations(holidays, ({ one }) => ({

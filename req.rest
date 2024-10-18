@@ -1,0 +1,41 @@
+POST http://localhost:5000/login
+Content-Type: application/json
+
+{
+    "email": "admin@admin.com",
+    "password": "Admin123!"
+}
+
+###
+
+DELETE  http://localhost:5000/logout
+Content-Type: application/json
+Cookie: refresh_token=eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjAxMzZjYzdjLTBiOGYtNGU0Mi05NTE2LTE2OTVlZDYyY2M2YSIsImlhdCI6MTcyOTAyOTk3MiwiZXhwIjoxNzMxNjIxOTcyfQ.k5uj56_n_rxUY1edQMEuHdcsGaqDlBAiIQW-HOfK_VS6c1z_5gDtALVbrnjt9wM2AdEWspxMaSva1XwbabJsuQ
+
+###
+
+POST http://localhost:5000/holiday/add
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjAxMzZjYzdjLTBiOGYtNGU0Mi05NTE2LTE2OTVlZDYyY2M2YSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzI5MDI5OTcyLCJleHAiOjE3MjkwMzA4NzJ9.FQEP-4zg32tBwGVAJzXDYNO91NayphpdpWG6UbduC3SEaZ0AsB4WXQcTypCOxCwTzXMprWvwbkOcJ4TWA5gutQ
+
+{
+    "test": "WAAAAA"
+}
+
+###
+
+POST http://localhost:5000/token/refresh
+Content-Type: application/json
+Cookie: refresh_token=eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjAxMzZjYzdjLTBiOGYtNGU0Mi05NTE2LTE2OTVlZDYyY2M2YSIsImlhdCI6MTcyOTAyOTk3MiwiZXhwIjoxNzMxNjIxOTcyfQ.k5uj56_n_rxUY1edQMEuHdcsGaqDlBAiIQW-HOfK_VS6c1z_5gDtALVbrnjt9wM2AdEWspxMaSva1XwbabJsuQ
+
+###
+
+POST http://localhost:5000/user/create
+Content-Type: application/json
+
+{
+    "name": "admin",
+    "surname": "admin",
+    "email": "admin@admin.com",
+    "password": "Admin123!"
+}

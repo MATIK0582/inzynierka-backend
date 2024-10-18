@@ -19,7 +19,7 @@ export const users = pgTable('users', {
     password: varchar('password', { length: MAX_PASSWORD_LENGTH }).notNull(),
     role: roleEnum('role').default(Roles.USER).notNull(),
     createdAt: timestamp('created_at').defaultNow().notNull(),
-    updatedAt: timestamp('updated_at').defaultNow().notNull(),
+    updatedAt: timestamp('updated_at').defaultNow().notNull().$onUpdate(() => new Date()),
 });
 
 export type UsersTypes = typeof users.$inferInsert;

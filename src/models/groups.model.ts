@@ -12,7 +12,7 @@ export const groups = pgTable('groups', {
         .references(() => users.id)
         .notNull(),
     createdAt: timestamp('created_at').defaultNow().notNull(),
-    updatedAt: timestamp('updated_at').defaultNow().notNull(),
+    updatedAt: timestamp('updated_at').defaultNow().notNull().$onUpdate(() => new Date()),
 });
 
 export const groupsRelations = relations(groups, ({ one, many }) => ({

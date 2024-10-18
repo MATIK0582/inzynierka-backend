@@ -2,6 +2,7 @@ import { UsersTypes } from '../../models/users.model';
 import { ErrorType } from '../../utils/errorHandling/errorTypes';
 import { createStatusCodeResponse, HTTP_CODES, StatusCode } from '../../utils/router/statusCodes';
 import { insertUser } from '../services/insertUser.service';
+import { hashPassword } from '../services/password.service';
 import { emailValidator } from '../validations/email.validator';
 import { passwordValidator } from '../validations/password.validator';
 
@@ -27,9 +28,9 @@ export const createUser = async ({ name, surname, email, password }: UsersTypes)
             );
         }
 
-        // @TODO: Hash password
+        const hash = await hashPassword(password);
 
-        const user = await insertUser({ name, surname, email, password });
+        const user = await insertUser({ name, surname, email, password: hash });
 
         return createStatusCodeResponse(
             HTTP_CODES.CREATED,
@@ -37,7 +38,7 @@ export const createUser = async ({ name, surname, email, password }: UsersTypes)
             `Zarejestrowano użytkownika o id ${user[0].id}`,
         );
     } catch (error: any) {
-        // @TODO: ADD PROPER ERROR HANDLING
+        // @FIXME: ADD PROPER ERROR HANDLING
         if (error.code && error.type) {
             return createStatusCodeResponse(error.code, error.type, 'Coś proszło nie tak');
         }
