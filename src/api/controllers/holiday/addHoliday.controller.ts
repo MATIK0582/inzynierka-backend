@@ -1,4 +1,4 @@
-import { createStatusCodeResponse, HTTP_CODES, StatusCode } from '../../utils/router/statusCodes';
+import { createStatusCodeResponse, HTTP_CODES, StatusCode } from '../../../utils/router/statusCodes';
 
 export const addHoliday = async (testString: string): Promise<StatusCode> => {
     try {

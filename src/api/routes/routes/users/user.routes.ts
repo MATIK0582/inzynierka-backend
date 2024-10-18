@@ -3,7 +3,7 @@ import { Request, Response } from 'express';
 import { UsersTypes } from '../../../../models/users.model';
 import { RouteDescription } from '../../../../utils/router/routeDescription';
 import { HttpMethod } from '../../../../utils/router/httpMethods';
-import { createUser } from '../../../controllers/createUser.controller';
+import { createUser } from '../../../controllers/user/createUser.controller';
 
 const createUserPost = async (req: Request, res: Response): Promise<void> => {
     const { name, surname, email, password }: UsersTypes = req.body;

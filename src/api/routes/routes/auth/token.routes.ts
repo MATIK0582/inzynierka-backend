@@ -4,7 +4,7 @@ import { Request, Response } from 'express';
 import { RouteDescription } from '../../../../utils/router/routeDescription';
 import { HttpMethod } from '../../../../utils/router/httpMethods';
 import { verifyRefreshToken } from '../../../middlewares/auth/jwt.middleware';
-import { newRefreshToken } from '../../../controllers/refreshToken.controller';
+import { newRefreshToken } from '../../../controllers/auth/refreshToken.controller';
 import { HTTP_CODES } from '../../../../utils/router/statusCodes';
 
 const refreshTokenPost = async (req: Request, res: Response): Promise<void> => {

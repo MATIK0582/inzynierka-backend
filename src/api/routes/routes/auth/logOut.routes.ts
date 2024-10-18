@@ -3,7 +3,7 @@ import { Request, Response } from 'express';
 
 import { RouteDescription } from '../../../../utils/router/routeDescription';
 import { HttpMethod } from '../../../../utils/router/httpMethods';
-import { logOut } from '../../../controllers/logOut.controller';
+import { logOut } from '../../../controllers/auth/logOut.controller';
 import { verifyRefreshToken } from '../../../middlewares/auth/jwt.middleware';
 
 const logOutDelete = async (req: Request, res: Response): Promise<void> => {

@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 
 import { RouteDescription } from '../../../../utils/router/routeDescription';
 import { HttpMethod } from '../../../../utils/router/httpMethods';
-import { addHoliday } from '../../../controllers/addHoliday.controller';
+import { addHoliday } from '../../../controllers/holiday/addHoliday.controller';
 import { verifyAccessToken } from '../../../middlewares/auth/jwt.middleware';
 
 const addHolidayPost = async (req: Request, res: Response): Promise<void> => {

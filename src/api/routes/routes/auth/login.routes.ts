@@ -4,7 +4,7 @@ import { Request, Response } from 'express';
 import { UsersTypes } from '../../../../models/users.model';
 import { RouteDescription } from '../../../../utils/router/routeDescription';
 import { HttpMethod } from '../../../../utils/router/httpMethods';
-import { logIn } from '../../../controllers/logIn.controller';
+import { logIn } from '../../../controllers/auth/logIn.controller';
 
 const logInPost = async (req: Request, res: Response): Promise<void> => {
     const { email, password }: UsersTypes = req.body;
