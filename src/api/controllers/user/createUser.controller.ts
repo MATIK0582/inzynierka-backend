@@ -1,10 +1,10 @@
-import { UsersTypes } from '../../models/users.model';
-import { ErrorType } from '../../utils/errorHandling/errorTypes';
-import { createStatusCodeResponse, HTTP_CODES, StatusCode } from '../../utils/router/statusCodes';
-import { insertUser } from '../services/insertUser.service';
-import { hashPassword } from '../services/password.service';
-import { emailValidator } from '../validations/email.validator';
-import { passwordValidator } from '../validations/password.validator';
+import { UsersTypes } from '../../../models/users.model';
+import { ErrorType } from '../../../utils/errorHandling/errorTypes';
+import { createStatusCodeResponse, HTTP_CODES, StatusCode } from '../../../utils/router/statusCodes';
+import { insertUser } from '../../services/insertUser.service';
+import { hashPassword } from '../../services/password.service';
+import { emailValidator } from '../../validations/email.validator';
+import { passwordValidator } from '../../validations/password.validator';
 
 export const createUser = async ({ name, surname, email, password }: UsersTypes): Promise<StatusCode> => {
     try {

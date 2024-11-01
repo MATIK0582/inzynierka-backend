@@ -1,7 +1,7 @@
 import { eq } from 'drizzle-orm';
 
-import { db } from '../../config/config';
-import { users } from '../../models/users.model';
+import { db } from '../../../config/config';
+import { users } from '../../../models/users.model';
 
 export const findUserByEmail = async (email: string) => {
     const user = await db.query.users.findFirst({
@@ -11,9 +11,9 @@ export const findUserByEmail = async (email: string) => {
     return user;
 };
 
-export const findUserById = async (id: string) => {
+export const findUserById = async (userId: string) => {
     const user = await db.query.users.findFirst({
-        where: eq(users.id, id)
+        where: eq(users.id, userId)
     });
     
     return user;

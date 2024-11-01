@@ -5,17 +5,19 @@ import { eq } from 'drizzle-orm';
 import { db } from '../../config/config';
 import { refreshTokens } from '../../models/refreshTokens.model';
 import { FIFTEEN_MINUTES_IN_SECONDS, THIRTY_DAYS_IN_SECONDS } from '../../utils/constants';
-import { findUserById } from '../../utils/database/queries';
+import { findUserById } from '../../utils/queries/users/userQueries';
 import { Roles } from '../../utils/database/models/roles';
 import { ActionType, TokenPair } from '../../utils/authorization/tokens';
 
-export const generateTokenPair = async (id: string, action: ActionType, oldRefreshToken?: string) => {
+// @TODO: seperate to specific files
+
+export const generateTokenPair = async (userId: string, action: ActionType, oldRefreshToken?: string) => {
     try {
-        const user = await findUserById(id);
+        const user = await findUserById(userId);
         if (user) {
-            const userData = { id: id, role: user.role };
+            const userData = { id: userId, role: user.role };
             const accessToken = generateAccessToken(userData);
-            const refreshToken = generateRefreshToken(id);
+            const refreshToken = generateRefreshToken(userId);
 
             if (action === ActionType.LOG_IN) {
                 await db.insert(refreshTokens).values({
@@ -55,8 +57,8 @@ export const generateAccessToken = (userData: { id: string; role: Roles }) => {
     });
 };
 
-export const generateRefreshToken = (id: string) => {
-    return jwt.sign({ id }, process.env.REFRESH_TOKEN_SECRET, {
+export const generateRefreshToken = (userId: string) => {
+    return jwt.sign({ userId }, process.env.REFRESH_TOKEN_SECRET, {
         algorithm: 'HS512',
         expiresIn: THIRTY_DAYS_IN_SECONDS,
     });

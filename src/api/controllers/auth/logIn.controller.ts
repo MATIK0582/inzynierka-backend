@@ -1,11 +1,11 @@
-import { LogInDescription } from '../../utils/authorization/logInDescription';
-import { ActionType } from '../../utils/authorization/tokens';
-import { findUserByEmail } from '../../utils/database/queries';
-import { ErrorType } from '../../utils/errorHandling/errorTypes';
-import { createStatusCodeResponse, HTTP_CODES, StatusCodeWithTokenPair } from '../../utils/router/statusCodes';
-import { generateTokenPair } from '../services/jwt.service';
-import { comparePasswords } from '../services/password.service';
-import { emailValidator } from '../validations/email.validator';
+import { LogInDescription } from '../../../utils/authorization/logInDescription';
+import { ActionType } from '../../../utils/authorization/tokens';
+import { findUserByEmail } from '../../../utils/queries/users/userQueries';
+import { ErrorType } from '../../../utils/errorHandling/errorTypes';
+import { createStatusCodeResponse, HTTP_CODES, StatusCodeWithTokenPair } from '../../../utils/router/statusCodes';
+import { generateTokenPair } from '../../services/jwt.service';
+import { comparePasswords } from '../../services/password.service';
+import { emailValidator } from '../../validations/email.validator';
 
 export const logIn = async ({ email, password }: LogInDescription): Promise<StatusCodeWithTokenPair> => {
     try {

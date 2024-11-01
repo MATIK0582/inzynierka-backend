@@ -1,25 +1,21 @@
 import 'dotenv/config';
-import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
+import { Response, NextFunction } from 'express';
 
-import { AccessTokenPayload } from '../../../utils/authorization/tokens';
+import { AccessTokenPayload, RefreshTokenPayload } from '../../../utils/authorization/tokens';
+import { CustomRequest } from '../../../utils/router/requestDescription';
 
-// export interface CustomRequest extends Request {
-//     user?: string;
-//     accessToken?: string;
-//     refreshToken?: string;
-// }
-
-export const verifyAccessToken = (req: Request, res: Response, next: NextFunction): void => {
+export const verifyAccessToken = (req: CustomRequest, res: Response, next: NextFunction): void => {
     try {
         const token = req.header('Authorization')?.replace('Bearer ', '');
         if (!token) {
             throw new Error('Authentication failed. Token missing.');
         }
         const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET) as AccessTokenPayload;
+        const userData = { id: decoded.userId, role: decoded.role };
 
-        // req.user = user
-        // req.token = token
+        req.user = userData;
+        req.accessToken = token;
 
         next();
     } catch (error) {
@@ -27,14 +23,16 @@ export const verifyAccessToken = (req: Request, res: Response, next: NextFunctio
     }
 };
 
-export const verifyRefreshToken = (req: Request, res: Response, next: NextFunction): void => {
+export const verifyRefreshToken = (req: CustomRequest, res: Response, next: NextFunction): void => {
     try {
         const refreshToken = req.cookies.refresh_token;
         if (!refreshToken) {
             throw new Error('Authentication failed. Token missing.');
         }
 
-        const decoded = jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET);
+        const decoded = jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET) as RefreshTokenPayload;
+
+        req.refreshToken = refreshToken;
 
         next();
     } catch (error) {

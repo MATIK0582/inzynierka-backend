@@ -11,14 +11,14 @@ export enum ActionType {
 }
 
 export interface AccessTokenPayload {
-    id: string;
+    userId: string;
     role: Roles;
     iat: number;
     exp: number;
 }
 
 export interface RefreshTokenPayload {
-    id: string;
+    userId: string;
     iat: number;
     exp: number;
 }

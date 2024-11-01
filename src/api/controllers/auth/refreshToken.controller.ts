@@ -1,8 +1,8 @@
 import jwt from 'jsonwebtoken';
 
-import { createStatusCodeResponse, HTTP_CODES, StatusCodeWithTokenPair } from '../../utils/router/statusCodes';
-import { checkIfRefreshTokenWasUsed, generateTokenPair } from '../services/jwt.service';
-import { ActionType, RefreshTokenPayload } from '../../utils/authorization/tokens';
+import { createStatusCodeResponse, HTTP_CODES, StatusCodeWithTokenPair } from '../../../utils/router/statusCodes';
+import { checkIfRefreshTokenWasUsed, generateTokenPair } from '../../services/jwt.service';
+import { ActionType, RefreshTokenPayload } from '../../../utils/authorization/tokens';
 
 export const newRefreshToken = async (oldRefreshToken: string): Promise<StatusCodeWithTokenPair> => {
     try {

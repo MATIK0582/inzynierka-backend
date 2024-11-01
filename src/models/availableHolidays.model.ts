@@ -9,10 +9,13 @@ export const availableHolidays = pgTable('available_holidays', {
     userId: uuid('user_id')
         .references(() => users.id)
         .notNull(),
-    holiday: smallint('holiday').default(DEFAULT_AVAILABLE_HOLIDAYS),
-    holidayUponRequest: smallint('holiday_upon_request').default(DEFAULT_AVAILABLE_HOLIDAYS_UPON_REQUEST),
+    holiday: smallint('holiday').default(DEFAULT_AVAILABLE_HOLIDAYS).notNull(),
+    holidayUponRequest: smallint('holiday_upon_request').default(DEFAULT_AVAILABLE_HOLIDAYS_UPON_REQUEST).notNull(),
     createdAt: timestamp('created_at').defaultNow().notNull(),
-    updatedAt: timestamp('updated_at').defaultNow().notNull().$onUpdate(() => new Date()),
+    updatedAt: timestamp('updated_at')
+        .defaultNow()
+        .notNull()
+        .$onUpdate(() => new Date()),
 });
 
 export const availableHolidaysRelations = relations(availableHolidays, ({ one }) => ({

@@ -16,10 +16,13 @@ Cookie: refresh_token=eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjAxMzZjYzdjL
 
 POST http://localhost:5000/holiday/add
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjAxMzZjYzdjLTBiOGYtNGU0Mi05NTE2LTE2OTVlZDYyY2M2YSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzI5MDI5OTcyLCJleHAiOjE3MjkwMzA4NzJ9.FQEP-4zg32tBwGVAJzXDYNO91NayphpdpWG6UbduC3SEaZ0AsB4WXQcTypCOxCwTzXMprWvwbkOcJ4TWA5gutQ
+Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjAxMzZjYzdjLTBiOGYtNGU0Mi05NTE2LTE2OTVlZDYyY2M2YSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzMwNDc4MTg3LCJleHAiOjE3MzA0NzkwODd9.G-fRZOoauyid3QU1-TNUG5L_ZNyMkrBTpHjmcIYmSyECz8OL1LUPxvQ5bHA-8UiZwJaxKgTVn_SItkDLrmr8JA
 
 {
-    "test": "WAAAAA"
+    "startDate": "2024-12-18",
+    "endDate": "2024-12-18",
+    "desciption": "test",
+    "holidayType": "annual"
 }
 
 ###

@@ -1,5 +1,5 @@
-import { createStatusCodeResponse, HTTP_CODES, StatusCode } from '../../utils/router/statusCodes';
-import { markRefreshTokenAsUsed } from '../services/jwt.service';
+import { createStatusCodeResponse, HTTP_CODES, StatusCode } from '../../../utils/router/statusCodes';
+import { markRefreshTokenAsUsed } from '../../services/jwt.service';
 
 export const logOut = async (refreshToken: string): Promise<StatusCode> => {
     try {
