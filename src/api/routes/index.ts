@@ -12,6 +12,19 @@ import { RouteDescription } from '../../utils/router/routeDescription';
 
 export const router = Router();
 
+// @FIXME: TS shenanigans
+// RouteDescription<AuthenticatedRequest>[]
+// Works in runtime but it raises TS Error
+
+// Possible solution here, but not ideal
+// https://stackoverflow.com/questions/37377731/extend-express-request-object-using-typescript
+
+// Affected files:
+//  routerUtils.ts
+//  routeDescripiton.ts
+//  requestDescription.ts
+//  ALL ROUTE FILES WITH  "req: AuthenticatedRequest"
+
 const ROUTES: RouteDescription[] = [
     ...HOME_ROUTES,
     ...CREATE_USER_POST_ROUTE,

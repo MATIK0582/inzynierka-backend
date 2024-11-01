@@ -8,12 +8,12 @@ import { verifyRefreshToken } from '../../../middlewares/auth/jwt.middleware';
 
 const logOutDelete = async (req: Request, res: Response): Promise<void> => {
     const refreshToken = req.cookies.refresh_token;
-
+    
     const response = await logOut(refreshToken);
-
+    
     res.removeHeader('Authorization');
     res.clearCookie('refresh_token').status(response.json.statusCode).json(response.json);
-
+    
     return;
 };
 
@@ -21,6 +21,7 @@ const LOGOUT_DELETE_ROUTE: RouteDescription = {
     method: HttpMethod.DELETE,
     url: '/logout',
     handler: logOutDelete,
+    // @TODO: Look further into missing RT case
     middlewares: [verifyRefreshToken],
 };
 
