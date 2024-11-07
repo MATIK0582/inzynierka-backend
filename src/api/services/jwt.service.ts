@@ -58,7 +58,7 @@ export const generateAccessToken = (userData: { id: string; role: Roles }) => {
 };
 
 export const generateRefreshToken = (userId: string) => {
-    return jwt.sign({ userId }, process.env.REFRESH_TOKEN_SECRET, {
+    return jwt.sign({ id: userId }, process.env.REFRESH_TOKEN_SECRET, {
         algorithm: 'HS512',
         expiresIn: THIRTY_DAYS_IN_SECONDS,
     });

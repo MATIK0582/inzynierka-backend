@@ -13,14 +13,6 @@ export const insertLeave = async ({ userId, startDate, endDate, desciption, holi
     });
 };
 
-export const getUserHolidays = async (userId: string) => {
-    const getUserHolidays = await db.query.holidays.findMany({
-        where: eq(holidays.userId, userId),
-    });
-
-    return getUserHolidays;
-};
-
 export const getUserOverlapingHolidays = async (userId: string, startDate: string, endDate: string) => {
     const overlapingHolidays = await db
         .select()
@@ -42,4 +34,24 @@ export const getUserOverlapingHolidays = async (userId: string, startDate: strin
         );
 
     return overlapingHolidays;
+};
+
+export const getUserHolidays = async (userId: string) => {
+    const getUserHolidays = await db.query.holidays.findMany({
+        where: eq(holidays.userId, userId),
+    });
+
+    return getUserHolidays;
+};
+
+export const getUserHolidayById = async (userId: string, holidayId: string) => {
+    const userHoliday = await db.query.holidays.findFirst({
+        where: and(eq(holidays.userId, userId), eq(holidays.id, holidayId)),
+    });
+
+    return userHoliday;
+};
+
+export const deleteUserHolidayById = async (userId: string, holidayId: string) => {
+    await db.delete(holidays).where(and(eq(holidays.userId, userId), eq(holidays.id, holidayId)));
 };

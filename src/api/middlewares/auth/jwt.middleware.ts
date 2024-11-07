@@ -12,7 +12,7 @@ export const verifyAccessToken = (req: CustomRequest, res: Response, next: NextF
             throw new Error('Authentication failed. Token missing.');
         }
         const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET) as AccessTokenPayload;
-        const userData = { id: decoded.userId, role: decoded.role };
+        const userData = { id: decoded.id, role: decoded.role };
 
         req.user = userData;
         req.accessToken = token;

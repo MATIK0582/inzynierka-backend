@@ -16,20 +16,30 @@ Cookie: refresh_token=eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjAxMzZjYzdjL
 
 POST http://localhost:5000/holiday/add
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjAxMzZjYzdjLTBiOGYtNGU0Mi05NTE2LTE2OTVlZDYyY2M2YSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzMwNDc4MTg3LCJleHAiOjE3MzA0NzkwODd9.G-fRZOoauyid3QU1-TNUG5L_ZNyMkrBTpHjmcIYmSyECz8OL1LUPxvQ5bHA-8UiZwJaxKgTVn_SItkDLrmr8JA
+Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjAxMzZjYzdjLTBiOGYtNGU0Mi05NTE2LTE2OTVlZDYyY2M2YSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzMwNDkyMzU1LCJleHAiOjE3MzA0OTMyNTV9.s57kEBHXYHKfViU5tdLCyEhBxNCWp2iuW8YYkYQcBwe37Su5xaS7j0VMzK4A396hKiIuqtNB03Y-xL6DL0TAsQ
 
 {
-    "startDate": "2024-12-18",
-    "endDate": "2024-12-18",
+    "startDate": "2024-12-20",
+    "endDate": "2024-12-20",
     "desciption": "test",
     "holidayType": "annual"
 }
 
 ###
 
+DELETE http://localhost:5000/holiday/delete
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjAxMzZjYzdjLTBiOGYtNGU0Mi05NTE2LTE2OTVlZDYyY2M2YSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzMwOTk1NDcxLCJleHAiOjE3MzA5OTYzNzF9.MpULliYWI5J2QZuy50romIGMgxohyQon9UZVCrO6r9zswUkASMsb1QJZVjoqS5O0RXTLdx36MaJGXsR-nWes_Q
+
+{
+    "holidayId": "31eb5d88-1297-4af1-bbcf-db70ab8880f1"
+}
+
+###
+
 POST http://localhost:5000/token/refresh
 Content-Type: application/json
-Cookie: refresh_token=eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjAxMzZjYzdjLTBiOGYtNGU0Mi05NTE2LTE2OTVlZDYyY2M2YSIsImlhdCI6MTcyOTAyOTk3MiwiZXhwIjoxNzMxNjIxOTcyfQ.k5uj56_n_rxUY1edQMEuHdcsGaqDlBAiIQW-HOfK_VS6c1z_5gDtALVbrnjt9wM2AdEWspxMaSva1XwbabJsuQ
+Cookie: refresh_token=eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjAxMzZjYzdjLTBiOGYtNGU0Mi05NTE2LTE2OTVlZDYyY2M2YSIsImlhdCI6MTczMDQ5NDk3OSwiZXhwIjoxNzMzMDg2OTc5fQ.I9RGtGfi5h29D_QjBHZp0vM8ZPITc8MNrMtHOMhNB_1jUeFrILytsbjNyjEsH7c6Hasr-szvtziYKlldY8MpLg
 
 ###
 
