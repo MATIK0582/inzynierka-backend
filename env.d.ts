@@ -10,5 +10,8 @@ declare namespace NodeJS {
         ACCESS_TOKEN_SECRET: string;
         REFRESH_TOKEN_SECRET: string;
         NODE_ENV: string;
+        MAIL_PROVIDER: string;
+        MAIL_PROVIDER_ADDRESS: string;
+        MAIL_PASSWORD: string;
     }
 }

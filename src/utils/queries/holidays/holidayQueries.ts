@@ -1,6 +1,10 @@
 import { and, or, eq, lte, gte } from 'drizzle-orm';
 import { db } from '../../../config/config';
 import { holidays, HolidaysTypes } from '../../../models/holidays.model';
+import { HolidayStatus } from '../../database/models/holidayStatuses';
+import { users } from '../../../models/users.model';
+import { userGroups } from '../../../models/userGroups.model';
+import { groups } from '../../../models/groups.model';
 
 export const insertLeave = async ({ userId, startDate, endDate, desciption, holidayType, status }: HolidaysTypes) => {
     await db.insert(holidays).values({
@@ -36,12 +40,12 @@ export const getUserOverlapingHolidays = async (userId: string, startDate: strin
     return overlapingHolidays;
 };
 
-export const getUserHolidays = async (userId: string) => {
-    const getUserHolidays = await db.query.holidays.findMany({
-        where: eq(holidays.userId, userId),
+export const getHolidayById = async (holidayId: string) => {
+    const holiday = await db.query.holidays.findFirst({
+        where: eq(holidays.id, holidayId),
     });
 
-    return getUserHolidays;
+    return holiday;
 };
 
 export const getUserHolidayById = async (userId: string, holidayId: string) => {
@@ -50,6 +54,23 @@ export const getUserHolidayById = async (userId: string, holidayId: string) => {
     });
 
     return userHoliday;
+};
+
+export const getUserHolidays = async (userId: string) => {
+    const getUserHolidays = await db.query.holidays.findMany({
+        where: eq(holidays.userId, userId),
+    });
+
+    return getUserHolidays;
+};
+
+export const updateHolidayStatus = async (holidayId: string, newStatus: HolidayStatus) => {
+    await db
+        .update(holidays)
+        .set({
+            status: newStatus,
+        })
+        .where(eq(holidays.id, holidayId));
 };
 
 export const deleteUserHolidayById = async (userId: string, holidayId: string) => {

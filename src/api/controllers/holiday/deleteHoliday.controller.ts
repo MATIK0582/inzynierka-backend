@@ -3,6 +3,7 @@ import { returnAvailableHolidays } from '../../services/holidays/returnAvailable
 import { deleteUserHolidayById, getUserHolidayById } from '../../../utils/queries/holidays/holidayQueries';
 import { createStatusCodeResponse, HTTP_CODES, StatusCode } from '../../../utils/router/statusCodes';
 import { uuidv4Validator } from '../../validations/uuidv4.validator';
+import { HolidayStatus } from '../../../utils/database/models/holidayStatuses';
 
 export const deleteHoliday = async (userId: string, holidayId: string): Promise<StatusCode> => {
     try {
@@ -21,6 +22,14 @@ export const deleteHoliday = async (userId: string, holidayId: string): Promise<
                 HTTP_CODES.NOT_FOUND,
                 "Can't find holiday with provided Id",
                 'Nie znaleziono urlopu o podanym Id',
+            );
+        }
+
+        if (holidayData.status === HolidayStatus.ACCEPTED) {
+            return createStatusCodeResponse(
+                HTTP_CODES.FORBIDDEN,
+                "Can't delete holiday that was already accepted",
+                'Nie można usunąć urlopu który został już zaakceptowany',
             );
         }
 

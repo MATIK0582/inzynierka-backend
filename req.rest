@@ -37,6 +37,16 @@ Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjAxMzZjYzdjL
 
 ###
 
+PUT  http://localhost:5000/holiday/accept
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjAxMzZjYzdjLTBiOGYtNGU0Mi05NTE2LTE2OTVlZDYyY2M2YSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTczMTA3NjU0NCwiZXhwIjoxNzMxMDc3NDQ0fQ.ZWNnN3ynHuCLSZR_R-3KaUgRtz1Qb5uE9wO2hNjk2I8TROEtj1hOHnGd4kxYsCG-daRDUilATAG5WCHCqlmvMw
+
+{
+    "holidayId": "0f8ad438-838d-4275-9ad3-bb7b2d578be1"
+}
+
+###
+
 POST http://localhost:5000/token/refresh
 Content-Type: application/json
 Cookie: refresh_token=eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjAxMzZjYzdjLTBiOGYtNGU0Mi05NTE2LTE2OTVlZDYyY2M2YSIsImlhdCI6MTczMDQ5NDk3OSwiZXhwIjoxNzMzMDg2OTc5fQ.I9RGtGfi5h29D_QjBHZp0vM8ZPITc8MNrMtHOMhNB_1jUeFrILytsbjNyjEsH7c6Hasr-szvtziYKlldY8MpLg
