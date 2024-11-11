@@ -4,3 +4,8 @@ export enum HolidayStatus {
     ACCEPTED = 'accepted',
     REJECTED = 'rejected',
 }
+
+export enum HolidayStatusAction {
+    ACCEPT,
+    REJECT,
+}

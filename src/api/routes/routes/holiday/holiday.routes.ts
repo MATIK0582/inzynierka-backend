@@ -8,6 +8,7 @@ import { HolidaysTypes } from '../../../../models/holidays.model';
 import { AuthenticatedRequest } from '../../../../utils/router/requestDescription';
 import { deleteHoliday } from '../../../controllers/holiday/deleteHoliday.controller';
 import { acceptHoliday } from '../../../controllers/holiday/acceptHoliday.controller';
+import { rejectHoliday } from '../../../controllers/holiday/rejectHoliday.controller';
 
 const addHolidayPost = async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     const userId = req.user.id;
@@ -33,11 +34,23 @@ const deleteHolidayDelete = async (req: AuthenticatedRequest, res: Response): Pr
 };
 
 const acceptHolidayPut = async (req: AuthenticatedRequest, res: Response): Promise<void> => {
-    const userId = req.user.id
-    const userRole = req.user.role
+    const userId = req.user.id;
+    const userRole = req.user.role;
     const { holidayId } = req.body;
 
     const response = await acceptHoliday(holidayId, userId, userRole);
+
+    res.status(response.json.statusCode).json(response.json);
+
+    return;
+};
+
+const rejectHolidayPut = async (req: AuthenticatedRequest, res: Response): Promise<void> => {
+    const userId = req.user.id;
+    const userRole = req.user.role;
+    const { holidayId } = req.body;
+
+    const response = await rejectHoliday(holidayId, userId, userRole);
 
     res.status(response.json.statusCode).json(response.json);
 
@@ -65,4 +78,16 @@ const ACCEPT_HOLIDAY_PUT_ROUTE: RouteDescription<AuthenticatedRequest> = {
     middlewares: [verifyAccessToken],
 };
 
-export default [ADD_HOLIDAY_POST_ROUTE, DELETE_HOLIDAY_DELETE_ROUTE, ACCEPT_HOLIDAY_PUT_ROUTE];
+const REJECT_HOLIDAY_PUT_ROUTE: RouteDescription<AuthenticatedRequest> = {
+    method: HttpMethod.PUT,
+    url: '/holiday/reject',
+    handler: rejectHolidayPut,
+    middlewares: [verifyAccessToken],
+};
+
+export default [
+    ADD_HOLIDAY_POST_ROUTE,
+    DELETE_HOLIDAY_DELETE_ROUTE,
+    ACCEPT_HOLIDAY_PUT_ROUTE,
+    REJECT_HOLIDAY_PUT_ROUTE,
+];

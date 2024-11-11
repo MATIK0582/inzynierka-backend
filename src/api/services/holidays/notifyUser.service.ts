@@ -5,8 +5,9 @@ import { sendMail } from '../nodemailer/sendMail.service';
 import { MailOptionsTypes } from '../../../utils/nodemailer/mailOptions';
 import { Roles } from '../../../utils/database/models/roles';
 import { findUserById } from '../../../utils/queries/users/userQueries';
+import { HolidayStatusAction } from '../../../utils/database/models/holidayStatuses';
 
-export const notifyUser = async (holidayData: HolidaysTypes, userRole: Roles) => {
+export const notifyUser = async (holidayData: HolidaysTypes, userRole: Roles, actionType: HolidayStatusAction) => {
     try {
         const petitionerData = await findUserById(holidayData.userId);
         if (!petitionerData) {
@@ -14,12 +15,17 @@ export const notifyUser = async (holidayData: HolidaysTypes, userRole: Roles) =>
         }
 
         let mailText = '';
-        if (userRole === Roles.TEAM_LEADER) {
-            mailText = 'Urlop został zaakceptowany przez leadera zespołu';
-        } else if (userRole === Roles.HUMAN_RESOURCE) {
-            mailText = 'Urlop został zaakceptowany. Miłego wypoczynku';
-        } else if (userRole === Roles.ADMIN) {
-            mailText = 'Urlop został zaakceptowany przez administratora. Miłego wypoczynku';
+
+        if (actionType === HolidayStatusAction.ACCEPT) {
+            if (userRole === Roles.TEAM_LEADER) {
+                mailText = 'Urlop został zaakceptowany przez leadera zespołu';
+            } else if (userRole === Roles.HUMAN_RESOURCE) {
+                mailText = 'Urlop został zaakceptowany. Miłego wypoczynku';
+            } else if (userRole === Roles.ADMIN) {
+                mailText = 'Urlop został zaakceptowany przez administratora. Miłego wypoczynku';
+            }
+        } else if (actionType === HolidayStatusAction.REJECT) {
+            mailText = 'Urlop został odrzucony. W razie pytań skontaktuj się z działem kadr';
         }
 
         const otpions: MailOptionsTypes = {

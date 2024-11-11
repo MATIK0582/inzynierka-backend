@@ -1,18 +1,18 @@
-import { notifyUser } from '../../services/holidays/notifyUser.service';
-import { changeHolidayStatus } from '../../services/holidays/changeHolidayStatus.service';
-import { createStatusCodeResponse, HTTP_CODES, StatusCode } from '../../../utils/router/statusCodes';
-import { Roles } from '../../../utils/database/models/roles';
 import { HolidayStatus, HolidayStatusAction } from '../../../utils/database/models/holidayStatuses';
+import { Roles } from '../../../utils/database/models/roles';
 import { getHolidayById } from '../../../utils/queries/holidays/holidayQueries';
+import { StatusCode, createStatusCodeResponse, HTTP_CODES } from '../../../utils/router/statusCodes';
+import { changeHolidayStatus } from '../../services/holidays/changeHolidayStatus.service';
+import { notifyUser } from '../../services/holidays/notifyUser.service';
 import { uuidv4Validator } from '../../validations/uuidv4.validator';
 
-export const acceptHoliday = async (holidayId: string, userId: string, userRole: Roles): Promise<StatusCode> => {
+export const rejectHoliday = async (holidayId: string, userId: string, userRole: Roles): Promise<StatusCode> => {
     try {
         if (userRole === Roles.USER) {
             return createStatusCodeResponse(
                 HTTP_CODES.FORBIDDEN,
-                'Not authorized to accept holidays',
-                'Brak uprawnień do akceptacji urlopów',
+                'Not authorized to reject holidays',
+                'Brak uprawnień do odrzucania urlopów',
             );
         }
 
@@ -34,20 +34,20 @@ export const acceptHoliday = async (holidayId: string, userId: string, userRole:
             );
         }
 
-        // Accept if role == admin?
+        // Reject if role == admin?
         if (holidayData.userId === userId) {
             return createStatusCodeResponse(
                 HTTP_CODES.FORBIDDEN,
-                'Not authorized to accept your own holidays',
-                'Brak uprawnień do akceptacji własnych urlopów',
+                'Not authorized to reject your own holidays',
+                'Brak uprawnień do odrzucenia własnych urlopów',
             );
         }
 
-        if (holidayData.status === HolidayStatus.ACCEPTED) {
+        if (holidayData.status === HolidayStatus.REJECTED) {
             return createStatusCodeResponse(
                 HTTP_CODES.FORBIDDEN,
-                'Holiday request already accepted',
-                'Wniosek urlopowy jest już zaakcpetowany',
+                'Holiday request already rejected',
+                'Wniosek urlopowy jest już odrzucony',
             );
         }
 
@@ -56,17 +56,17 @@ export const acceptHoliday = async (holidayId: string, userId: string, userRole:
         //     if (!(await isHolidayFromUserInTeamLeadersGroup(holidayId, userId))) {
         //         return createStatusCodeResponse(
         //             HTTP_CODES.FORBIDDEN,
-        //             'Not authorized to accept this holiday',
-        //             'Brak uprawnień do akceptacji tego urlopów',
+        //             'Not authorized to reject this holiday',
+        //             'Brak uprawnień do odrzucenia tego urlopu',
         //         );
         //     }
         // }
 
-        await changeHolidayStatus(holidayId, userRole, HolidayStatusAction.ACCEPT);
+        await changeHolidayStatus(holidayId, userRole, HolidayStatusAction.REJECT);
 
-        notifyUser(holidayData, userRole, HolidayStatusAction.ACCEPT);
+        notifyUser(holidayData, userRole, HolidayStatusAction.REJECT);
 
-        return createStatusCodeResponse(HTTP_CODES.OK, 'Holiday accepted', 'Zaakceptowano wniosek o urlop');
+        return createStatusCodeResponse(HTTP_CODES.OK, 'Holiday rejected', 'Odrzucono wniosek o urlop');
     } catch (error: any) {
         // @FIXME: ADD PROPER ERROR HANDLING
         console.log(error);
