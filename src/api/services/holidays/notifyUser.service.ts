@@ -4,12 +4,12 @@ import { HolidaysTypes } from '../../../models/holidays.model';
 import { sendMail } from '../nodemailer/sendMail.service';
 import { MailOptionsTypes } from '../../../utils/nodemailer/mailOptions';
 import { Roles } from '../../../utils/database/models/roles';
-import { findUserById } from '../../../utils/queries/users/userQueries';
+import { getUserById } from '../../../utils/queries/users/userQueries';
 import { HolidayStatusAction } from '../../../utils/database/models/holidayStatuses';
 
 export const notifyUser = async (holidayData: HolidaysTypes, userRole: Roles, actionType: HolidayStatusAction) => {
     try {
-        const petitionerData = await findUserById(holidayData.userId);
+        const petitionerData = await getUserById(holidayData.userId);
         if (!petitionerData) {
             throw new Error("DB connection failed, can't get user's email");
         }

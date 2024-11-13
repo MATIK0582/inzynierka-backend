@@ -5,7 +5,7 @@ import { eq } from 'drizzle-orm';
 import { db } from '../../config/config';
 import { refreshTokens } from '../../models/refreshTokens.model';
 import { FIFTEEN_MINUTES_IN_SECONDS, THIRTY_DAYS_IN_SECONDS } from '../../utils/constants';
-import { findUserById } from '../../utils/queries/users/userQueries';
+import { getUserById } from '../../utils/queries/users/userQueries';
 import { Roles } from '../../utils/database/models/roles';
 import { ActionType, TokenPair } from '../../utils/authorization/tokens';
 
@@ -13,7 +13,7 @@ import { ActionType, TokenPair } from '../../utils/authorization/tokens';
 
 export const generateTokenPair = async (userId: string, action: ActionType, oldRefreshToken?: string) => {
     try {
-        const user = await findUserById(userId);
+        const user = await getUserById(userId);
         if (user) {
             const userData = { id: userId, role: user.role };
             const accessToken = generateAccessToken(userData);

@@ -1,6 +1,6 @@
 import { LogInDescription } from '../../../utils/authorization/logInDescription';
 import { ActionType } from '../../../utils/authorization/tokens';
-import { findUserByEmail } from '../../../utils/queries/users/userQueries';
+import { getUserByEmail } from '../../../utils/queries/users/userQueries';
 import { ErrorType } from '../../../utils/errorHandling/errorTypes';
 import { createStatusCodeResponse, HTTP_CODES, StatusCodeWithTokenPair } from '../../../utils/router/statusCodes';
 import { generateTokenPair } from '../../services/jwt.service';
@@ -18,7 +18,7 @@ export const logIn = async ({ email, password }: LogInDescription): Promise<Stat
             );
         }
 
-        const user = await findUserByEmail(email);
+        const user = await getUserByEmail(email);
         if (!user) {
             return createStatusCodeResponse(
                 HTTP_CODES.UNAUTHORIZED,
