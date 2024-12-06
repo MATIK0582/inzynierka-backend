@@ -28,6 +28,8 @@ export const createUser = async ({ name, surname, email, password }: UsersTypes)
             );
         }
 
+        // @TODO Check if email overlaps
+
         const hash = await hashPassword(password);
 
         const user = await insertUser({ name, surname, email, password: hash });
