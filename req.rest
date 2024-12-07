@@ -21,7 +21,7 @@ Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjAxMzZjYzdjL
 {
     "startDate": "2024-12-20",
     "endDate": "2024-12-20",
-    "desciption": "test",
+    "description": "test",
     "holidayType": "annual"
 }
 

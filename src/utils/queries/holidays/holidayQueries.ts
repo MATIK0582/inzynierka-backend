@@ -6,12 +6,12 @@ import { users } from '../../../models/users.model';
 import { userGroups } from '../../../models/userGroups.model';
 import { groups } from '../../../models/groups.model';
 
-export const insertLeave = async ({ userId, startDate, endDate, desciption, holidayType, status }: HolidaysTypes) => {
+export const insertLeave = async ({ userId, startDate, endDate, description, holidayType, status }: HolidaysTypes) => {
     await db.insert(holidays).values({
         userId: userId,
         startDate: startDate,
         endDate: endDate,
-        desciption: desciption,
+        description: description,
         holidayType: holidayType,
         status: status,
     });

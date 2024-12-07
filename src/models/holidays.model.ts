@@ -17,7 +17,7 @@ export const holidays = pgTable('holidays', {
         .notNull(),
     startDate: date('start_date').notNull(),
     endDate: date('end_date').notNull(),
-    desciption: varchar('desciption', { length: MAX_DESCRIPTION_LENGTH }).notNull(),
+    description: varchar('description', { length: MAX_DESCRIPTION_LENGTH }),
     holidayType: holidayTypeEnum('holiday_type').notNull(),
     status: holidayStatusEnum('status').default(HolidayStatus.PENDING).notNull(),
     createdAt: timestamp('created_at').defaultNow().notNull(),

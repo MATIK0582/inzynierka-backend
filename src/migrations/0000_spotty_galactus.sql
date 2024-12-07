@@ -1,11 +1,11 @@
 DO $$ BEGIN
- CREATE TYPE "public"."holiday_type" AS ENUM('annual', 'on_demand', 'sick');
+ CREATE TYPE "public"."status" AS ENUM('pending', 'accepted_by_team_leader', 'accepted', 'rejected');
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
 --> statement-breakpoint
 DO $$ BEGIN
- CREATE TYPE "public"."status" AS ENUM('pending', 'accepted_by_team_leader', 'accepted', 'rejected');
+ CREATE TYPE "public"."holiday_type" AS ENUM('annual', 'on_demand', 'sick');
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
@@ -19,8 +19,8 @@ END $$;
 CREATE TABLE IF NOT EXISTS "available_holidays" (
 	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
 	"user_id" uuid NOT NULL,
-	"holiday" smallint DEFAULT 26,
-	"holiday_upon_request" smallint DEFAULT 4,
+	"holiday" smallint DEFAULT 26 NOT NULL,
+	"holiday_upon_request" smallint DEFAULT 4 NOT NULL,
 	"created_at" timestamp DEFAULT now() NOT NULL,
 	"updated_at" timestamp DEFAULT now() NOT NULL
 );
@@ -38,9 +38,9 @@ CREATE TABLE IF NOT EXISTS "holidays" (
 	"user_id" uuid NOT NULL,
 	"start_date" date NOT NULL,
 	"end_date" date NOT NULL,
-	"desciption" varchar(255) NOT NULL,
+	"description" varchar(255),
 	"holiday_type" "holiday_type" NOT NULL,
-	"status" "status" NOT NULL,
+	"status" "status" DEFAULT 'pending' NOT NULL,
 	"created_at" timestamp DEFAULT now() NOT NULL,
 	"updated_at" timestamp DEFAULT now() NOT NULL
 );

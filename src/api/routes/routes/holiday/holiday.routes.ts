@@ -13,9 +13,9 @@ import { rejectHoliday } from '../../../controllers/holiday/rejectHoliday.contro
 const addHolidayPost = async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     const userId = req.user.id;
 
-    const { startDate, endDate, desciption, holidayType }: HolidaysTypes = req.body;
+    const { startDate, endDate, description, holidayType }: HolidaysTypes = req.body;
 
-    const response = await addHoliday({ userId, startDate, endDate, desciption, holidayType });
+    const response = await addHoliday({ userId, startDate, endDate, description, holidayType });
 
     res.status(response.json.statusCode).json(response.json);
 

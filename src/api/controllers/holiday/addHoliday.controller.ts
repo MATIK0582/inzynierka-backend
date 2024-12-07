@@ -11,7 +11,7 @@ export const addHoliday = async ({
     userId,
     startDate,
     endDate,
-    desciption,
+    description,
     holidayType,
 }: HolidaysTypes): Promise<StatusCode> => {
     try {
@@ -42,7 +42,7 @@ export const addHoliday = async ({
 
         // @TODO: add & check company leave policies
 
-        await insertLeave({ userId, startDate, endDate, desciption, holidayType, status: HolidayStatus.PENDING });
+        await insertLeave({ userId, startDate, endDate, description, holidayType, status: HolidayStatus.PENDING });
 
         await deductAvailableHolidays(userId, numberOfLeaveDays, holidayType);
 
