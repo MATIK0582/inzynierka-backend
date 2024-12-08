@@ -62,3 +62,9 @@ Content-Type: application/json
     "email": "admin@admin.com",
     "password": "Admin123!"
 }
+
+###
+
+GET http://localhost:5000/holiday/own
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ1M2NhZjFmLTRlNzgtNDgxNi04ZjQ5LTI0MDU2MjFiMWNjMiIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTczMzYwMTU0OCwiZXhwIjoxNzMzNjAyNDQ4fQ.B_90q1eUtApJ22uMGELOgokUAAxBbKZ58R9sMkQfQ5ZHu0ldYZsQwBz3PeabTN_ql95XKsnefpk3Gv_1NzQq4w
