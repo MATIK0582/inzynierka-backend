@@ -89,8 +89,8 @@ export const getGroupHolidaysWithNamesByTeamLeader = async (userId: string) => {
             status: holidays.status,
             createdAt: holidays.createdAt,
             updatedAt: holidays.updatedAt,
-            userName: users.name,
-            userSurname: users.surname,
+            name: users.name,
+            surname: users.surname,
         })
         .from(holidays)
         .innerJoin(users, eq(holidays.userId, users.id))
@@ -113,8 +113,8 @@ export const getAllHolidaysWithNames = async () => {
             status: holidays.status,
             createdAt: holidays.createdAt,
             updatedAt: holidays.updatedAt,
-            userName: users.name,
-            userSurname: users.surname,
+            name: users.name,
+            surname: users.surname,
         })
         .from(holidays)
         .innerJoin(users, eq(holidays.userId, users.id));
