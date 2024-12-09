@@ -1,10 +1,10 @@
-import { and, or, eq, lte, gte } from 'drizzle-orm';
+import { and, eq, gte, lte, or } from 'drizzle-orm';
 import { db } from '../../../config/config';
-import { holidays, HolidaysTypes } from '../../../models/holidays.model';
-import { HolidayStatus } from '../../database/models/holidayStatuses';
-import { users } from '../../../models/users.model';
-import { userGroups } from '../../../models/userGroups.model';
 import { groups } from '../../../models/groups.model';
+import { holidays, HolidaysTypes } from '../../../models/holidays.model';
+import { userGroups } from '../../../models/userGroups.model';
+import { users } from '../../../models/users.model';
+import { HolidayStatus } from '../../database/models/holidayStatuses';
 
 export const insertLeave = async ({ userId, startDate, endDate, description, holidayType, status }: HolidaysTypes) => {
     await db.insert(holidays).values({
@@ -75,4 +75,49 @@ export const updateHolidayStatus = async (holidayId: string, newStatus: HolidayS
 
 export const deleteUserHolidayById = async (userId: string, holidayId: string) => {
     await db.delete(holidays).where(and(eq(holidays.userId, userId), eq(holidays.id, holidayId)));
+};
+
+export const getGroupHolidaysWithNamesByTeamLeader = async (userId: string) => {
+    const result = await db
+        .select({
+            holidayId: holidays.id,
+            userId: holidays.userId,
+            startDate: holidays.startDate,
+            endDate: holidays.endDate,
+            description: holidays.description,
+            holidayType: holidays.holidayType,
+            status: holidays.status,
+            createdAt: holidays.createdAt,
+            updatedAt: holidays.updatedAt,
+            userName: users.name,
+            userSurname: users.surname,
+        })
+        .from(holidays)
+        .innerJoin(users, eq(holidays.userId, users.id))
+        .innerJoin(userGroups, eq(users.id, userGroups.userId))
+        .innerJoin(groups, eq(userGroups.groupId, groups.id))
+        .where(eq(groups.leaderId, userId));
+
+    return result;
+};
+
+export const getAllHolidaysWithNames = async () => {
+    const result = await db
+        .select({
+            holidayId: holidays.id,
+            userId: holidays.userId,
+            startDate: holidays.startDate,
+            endDate: holidays.endDate,
+            description: holidays.description,
+            holidayType: holidays.holidayType,
+            status: holidays.status,
+            createdAt: holidays.createdAt,
+            updatedAt: holidays.updatedAt,
+            userName: users.name,
+            userSurname: users.surname,
+        })
+        .from(holidays)
+        .innerJoin(users, eq(holidays.userId, users.id));
+
+    return result;
 };

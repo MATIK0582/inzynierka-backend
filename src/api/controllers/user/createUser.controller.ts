@@ -41,6 +41,7 @@ export const createUser = async ({ name, surname, email, password }: UsersTypes)
         );
     } catch (error: any) {
         // @FIXME: ADD PROPER ERROR HANDLING
+        console.log(error);
         if (error.code && error.type) {
             return createStatusCodeResponse(error.code, error.type, 'Coś proszło nie tak');
         }

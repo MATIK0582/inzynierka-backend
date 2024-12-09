@@ -67,4 +67,26 @@ Content-Type: application/json
 
 GET http://localhost:5000/holiday/own
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ1M2NhZjFmLTRlNzgtNDgxNi04ZjQ5LTI0MDU2MjFiMWNjMiIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTczMzYwMTU0OCwiZXhwIjoxNzMzNjAyNDQ4fQ.B_90q1eUtApJ22uMGELOgokUAAxBbKZ58R9sMkQfQ5ZHu0ldYZsQwBz3PeabTN_ql95XKsnefpk3Gv_1NzQq4w
+Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ1M2NhZjFmLTRlNzgtNDgxNi04ZjQ5LTI0MDU2MjFiMWNjMiIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTczMzcwMjUzMywiZXhwIjoxNzMzNzAzNDMzfQ.mbHz0iNft-PgHx48QEP_mQFNTW3n-igiZdYNtbYi9p8-DMkVl6ZUI1-2MIPOGV380w8x3EnGBJAzmXrBz2pzbA
+
+###
+
+GET http://localhost:5000/holiday/group
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ1M2NhZjFmLTRlNzgtNDgxNi04ZjQ5LTI0MDU2MjFiMWNjMiIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTczMzcwMjUzMywiZXhwIjoxNzMzNzAzNDMzfQ.mbHz0iNft-PgHx48QEP_mQFNTW3n-igiZdYNtbYi9p8-DMkVl6ZUI1-2MIPOGV380w8x3EnGBJAzmXrBz2pzbA
+
+###
+
+GET http://localhost:5000/holiday/all
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ1M2NhZjFmLTRlNzgtNDgxNi04ZjQ5LTI0MDU2MjFiMWNjMiIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTczMzcwMjUzMywiZXhwIjoxNzMzNzAzNDMzfQ.mbHz0iNft-PgHx48QEP_mQFNTW3n-igiZdYNtbYi9p8-DMkVl6ZUI1-2MIPOGV380w8x3EnGBJAzmXrBz2pzbA
+
+###
+
+GET http://localhost:5000/holiday/employee
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ1M2NhZjFmLTRlNzgtNDgxNi04ZjQ5LTI0MDU2MjFiMWNjMiIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTczMzcwMjUzMywiZXhwIjoxNzMzNzAzNDMzfQ.mbHz0iNft-PgHx48QEP_mQFNTW3n-igiZdYNtbYi9p8-DMkVl6ZUI1-2MIPOGV380w8x3EnGBJAzmXrBz2pzbA
+
+{
+    "employeeId": "8139da5e-8718-469e-a535-7ebc52bdbad2"
+}

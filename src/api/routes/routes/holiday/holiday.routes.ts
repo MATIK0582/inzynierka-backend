@@ -10,6 +10,9 @@ import { deleteHoliday } from '../../../controllers/holiday/deleteHoliday.contro
 import { acceptHoliday } from '../../../controllers/holiday/acceptHoliday.controller';
 import { rejectHoliday } from '../../../controllers/holiday/rejectHoliday.controller';
 import { ownHolidays } from '../../../controllers/holiday/get/ownHolidays.controller';
+import { groupHolidays } from '../../../controllers/holiday/get/groupHolidays.controller';
+import { allHolidays } from '../../../controllers/holiday/get/allHolidays.controller';
+import { employeeHolidays } from '../../../controllers/holiday/get/employeeHolidays.controller';
 
 const addHolidayPost = async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     const userId = req.user.id;
@@ -68,14 +71,14 @@ const ownHolidaysGet = async (req: AuthenticatedRequest, res: Response): Promise
     return;
 };
 
-const userHolidaysGet = async (req: AuthenticatedRequest, res: Response): Promise<void> => {
-    const userId = req.user.id;
+const employeeHolidaysGet = async (req: AuthenticatedRequest, res: Response): Promise<void> => {
+    // const userId = req.user.id;
     const userRole = req.user.role;
-    const { holidayId } = req.body;
+    const { employeeId } = req.body;
 
-    // const response = await rejectHoliday(holidayId, userId, userRole);
+    const response = await employeeHolidays(employeeId, userRole);
 
-    // res.status(response.json.statusCode).json(response.json);
+    res.status(response.json.statusCode).json(response.json);
 
     return;
 };
@@ -83,23 +86,20 @@ const userHolidaysGet = async (req: AuthenticatedRequest, res: Response): Promis
 const groupHolidayGet = async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     const userId = req.user.id;
     const userRole = req.user.role;
-    const { holidayId } = req.body;
 
-    // const response = await rejectHoliday(holidayId, userId, userRole);
+    const response = await groupHolidays(userId, userRole);
 
-    // res.status(response.json.statusCode).json(response.json);
+    res.status(response.json.statusCode).json(response.json);
 
     return;
 };
 
 const allHolidaysGet = async (req: AuthenticatedRequest, res: Response): Promise<void> => {
-    const userId = req.user.id;
     const userRole = req.user.role;
-    const { holidayId } = req.body;
 
-    // const response = await rejectHoliday(holidayId, userId, userRole);
+    const response = await allHolidays(userRole);
 
-    // res.status(response.json.statusCode).json(response.json);
+    res.status(response.json.statusCode).json(response.json);
 
     return;
 };
@@ -139,23 +139,23 @@ const OWN_HOLIDAYS_GET_ROUTE: RouteDescription<AuthenticatedRequest> = {
     middlewares: [verifyAccessToken],
 };
 
-const USER_HOLIDAYS_GET_ROUTE: RouteDescription<AuthenticatedRequest> = {
-    method: HttpMethod.POST,
-    url: '/holiday/add',
-    handler: userHolidaysGet,
+const EMPLOYEE_HOLIDAYS_GET_ROUTE: RouteDescription<AuthenticatedRequest> = {
+    method: HttpMethod.GET,
+    url: '/holiday/employee',
+    handler: employeeHolidaysGet,
     middlewares: [verifyAccessToken],
 };
 
 const GROUP_HOLIDAYS_GET_ROUTE: RouteDescription<AuthenticatedRequest> = {
-    method: HttpMethod.POST,
-    url: '/holiday/add',
+    method: HttpMethod.GET,
+    url: '/holiday/group',
     handler: groupHolidayGet,
     middlewares: [verifyAccessToken],
 };
 
 const ALL_HOLIDAYS_GET_ROUTE: RouteDescription<AuthenticatedRequest> = {
-    method: HttpMethod.POST,
-    url: '/holiday/add',
+    method: HttpMethod.GET,
+    url: '/holiday/all',
     handler: allHolidaysGet,
     middlewares: [verifyAccessToken],
 };
@@ -166,7 +166,7 @@ export default [
     ACCEPT_HOLIDAY_PUT_ROUTE,
     REJECT_HOLIDAY_PUT_ROUTE,
     OWN_HOLIDAYS_GET_ROUTE,
-    USER_HOLIDAYS_GET_ROUTE,
+    EMPLOYEE_HOLIDAYS_GET_ROUTE,
     GROUP_HOLIDAYS_GET_ROUTE,
     ALL_HOLIDAYS_GET_ROUTE,
 ];
