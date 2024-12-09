@@ -80,7 +80,7 @@ export const deleteUserHolidayById = async (userId: string, holidayId: string) =
 export const getGroupHolidaysWithNamesByTeamLeader = async (userId: string) => {
     const result = await db
         .select({
-            holidayId: holidays.id,
+            id: holidays.id,
             userId: holidays.userId,
             startDate: holidays.startDate,
             endDate: holidays.endDate,
@@ -104,7 +104,7 @@ export const getGroupHolidaysWithNamesByTeamLeader = async (userId: string) => {
 export const getAllHolidaysWithNames = async () => {
     const result = await db
         .select({
-            holidayId: holidays.id,
+            id: holidays.id,
             userId: holidays.userId,
             startDate: holidays.startDate,
             endDate: holidays.endDate,
