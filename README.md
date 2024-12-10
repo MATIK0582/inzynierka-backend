@@ -1,5 +1,5 @@
 
-# Inżynierka Backend
+# Praca inżynierska - Backend
 
 Backend serwera do aplikacji zarządzania urlopami stworzony w Node.js z użyciem TypeScript i Express. Projekt jest częścią pracy inżynierskiej.
 
@@ -35,12 +35,22 @@ Aby uruchomić ten projekt, upewnij się, że masz zainstalowane:
 3. **Skonfiguruj zmienne środowiskowe**:
    - Utwórz plik `.env` w katalogu głównym projektu.
    - Dodaj do niego wymagane zmienne środowiskowe (opisane poniżej).
+  
+4. **Wygeneruj modele bazy danych**:
+   ```bash
+   yarn db:generate
+   ```
+
+5. **Przeprowadź migrację bazy danych**:
+   ```bash
+   yarn db:migrate
+   ```
 
 ---
 
-## 🔐 **Zmiennie środowiskowe**
+## 🔐 **Zmienne środowiskowe**
 
-Aby uruchomić aplikację, musisz skonfigurować zmienne środowiskowe. Utwórz plik `.env` i dodaj następujące warto:
+Aby uruchomić aplikację, musisz skonfigurować zmienne środowiskowe. Utwórz plik `.env` i dodaj następujące wartości:
 
 ```
 APP_PORT=port-uruchomienia-aplikacji
@@ -98,7 +108,7 @@ yarn start:dev
 | `yarn start:dev:watch` | Uruchamia serwer deweloperski z automatycznym restartem.      |
 | `yarn start:prod`      | Uruchamia zbudowaną aplikację produkcyjną.                     |
 | `yarn db:generate`     | Generuje modele baz danych z użyciem Drizzle ORM.             |
-| `yarn db:migrate`      | Wykonuje migracje bazy danych.                                |
+| `yarn db:migrate`      | Wykonuje migrację bazy danych.                                |
 | `yarn db:studio`       | Otwiera GUI do zarządzania bazą danych (Drizzle Studio).      |
 
 ---
