@@ -1,5 +1,6 @@
 import { UsersTypes } from '../../../models/users.model';
 import { ErrorType } from '../../../utils/errorHandling/errorTypes';
+import { insertDefaultAvailableHolidays } from '../../../utils/queries/availableHolidays/availableHolidayQueries';
 import { createStatusCodeResponse, HTTP_CODES, StatusCode } from '../../../utils/router/statusCodes';
 import { insertUser } from '../../services/insertUser.service';
 import { hashPassword } from '../../services/password.service';
@@ -33,6 +34,8 @@ export const createUser = async ({ name, surname, email, password }: UsersTypes)
         const hash = await hashPassword(password);
 
         const user = await insertUser({ name, surname, email, password: hash });
+
+        await insertDefaultAvailableHolidays({userId: user[0].id})
 
         return createStatusCodeResponse(
             HTTP_CODES.CREATED,

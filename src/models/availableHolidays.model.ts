@@ -18,6 +18,8 @@ export const availableHolidays = pgTable('available_holidays', {
         .$onUpdate(() => new Date()),
 });
 
+export type AvailableHolidaysTypes = typeof availableHolidays.$inferInsert;
+
 export const availableHolidaysRelations = relations(availableHolidays, ({ one }) => ({
     user: one(users, {
         fields: [availableHolidays.userId],
