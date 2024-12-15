@@ -16,5 +16,19 @@ export const hasSufficientLeaveDays = async (
         }
     }
 
+    const alwaysAcceptedHolidayTypes: HolidayType[] = [
+        HolidayType.SICK,
+        HolidayType.UNPAID,
+        HolidayType.MATERNITY,
+        HolidayType.PATERNITY,
+        HolidayType.PARENTAL,
+        HolidayType.CHILDCARE,
+        HolidayType.OCCASIONAL,
+    ];
+
+    if (alwaysAcceptedHolidayTypes.includes(holidayType)) {
+        return true;
+    }
+
     return false;
 };

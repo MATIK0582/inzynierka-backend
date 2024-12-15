@@ -5,7 +5,7 @@ EXCEPTION
 END $$;
 --> statement-breakpoint
 DO $$ BEGIN
- CREATE TYPE "public"."holiday_type" AS ENUM('annual', 'on_demand', 'sick');
+ CREATE TYPE "public"."holiday_type" AS ENUM('wypoczynkowy', 'na_żądanie', 'chorobowy', 'bezpłatny', 'macierzyński', 'ojcowski', 'rodzicielski', 'wychowawczy', 'okolicznościowy');
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;

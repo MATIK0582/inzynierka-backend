@@ -1,5 +1,5 @@
 {
-  "id": "7fc66dbc-92ee-4557-b385-55a1147a38d7",
+  "id": "ddeac9e1-692d-4204-9e20-8f8381d12697",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -403,9 +403,15 @@
       "name": "holiday_type",
       "schema": "public",
       "values": [
-        "annual",
-        "on_demand",
-        "sick"
+        "wypoczynkowy",
+        "na_żądanie",
+        "chorobowy",
+        "bezpłatny",
+        "macierzyński",
+        "ojcowski",
+        "rodzicielski",
+        "wychowawczy",
+        "okolicznościowy"
       ]
     },
     "public.role": {

@@ -90,3 +90,11 @@ Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ1M2NhZjFmL
 {
     "employeeId": "8139da5e-8718-469e-a535-7ebc52bdbad2"
 }
+
+###
+
+GET http://localhost:5000/user/data/own
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImZkNzZiYmNhLWI1MWUtNDllMS1hOGYwLWI1NzZjZjAxYWZlYiIsInJvbGUiOiJ0ZWFtX2xlYWRlciIsImlhdCI6MTczNDI3MTYzMCwiZXhwIjoxNzM0MjcyNTMwfQ.uV13LL9TNBjD1RiBBCTkVy-mOVXvjnxBT3f2Bld_DrIjzJN4OZ6iJs-DdQRNwvYFhp_hAAkGf0g40TfLsImUGw
+
+###
