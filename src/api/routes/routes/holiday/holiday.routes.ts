@@ -71,7 +71,7 @@ const ownHolidaysGet = async (req: AuthenticatedRequest, res: Response): Promise
     return;
 };
 
-const employeeHolidaysGet = async (req: AuthenticatedRequest, res: Response): Promise<void> => {
+const getEmployeeHolidaysPost = async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     // const userId = req.user.id;
     const userRole = req.user.role;
     const { employeeId } = req.body;
@@ -139,10 +139,10 @@ const OWN_HOLIDAYS_GET_ROUTE: RouteDescription<AuthenticatedRequest> = {
     middlewares: [verifyAccessToken],
 };
 
-const EMPLOYEE_HOLIDAYS_GET_ROUTE: RouteDescription<AuthenticatedRequest> = {
-    method: HttpMethod.GET,
+const GET_EMPLOYEE_HOLIDAYS_POST_ROUTE: RouteDescription<AuthenticatedRequest> = {
+    method: HttpMethod.POST,
     url: '/holiday/employee',
-    handler: employeeHolidaysGet,
+    handler: getEmployeeHolidaysPost,
     middlewares: [verifyAccessToken],
 };
 
@@ -166,7 +166,7 @@ export default [
     ACCEPT_HOLIDAY_PUT_ROUTE,
     REJECT_HOLIDAY_PUT_ROUTE,
     OWN_HOLIDAYS_GET_ROUTE,
-    EMPLOYEE_HOLIDAYS_GET_ROUTE,
+    GET_EMPLOYEE_HOLIDAYS_POST_ROUTE,
     GROUP_HOLIDAYS_GET_ROUTE,
     ALL_HOLIDAYS_GET_ROUTE,
 ];

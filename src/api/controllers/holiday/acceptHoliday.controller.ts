@@ -35,13 +35,13 @@ export const acceptHoliday = async (holidayId: string, userId: string, userRole:
         }
 
         // Accept if role == admin?
-        if (holidayData.userId === userId) {
-            return createStatusCodeResponse(
-                HTTP_CODES.FORBIDDEN,
-                'Not authorized to accept your own holidays',
-                'Brak uprawnień do akceptacji własnych urlopów',
-            );
-        }
+        // if (holidayData.userId === userId) {
+        //     return createStatusCodeResponse(
+        //         HTTP_CODES.FORBIDDEN,
+        //         'Not authorized to accept your own holidays',
+        //         'Brak uprawnień do akceptacji własnych urlopów',
+        //     );
+        // }
 
         if (holidayData.status === HolidayStatus.ACCEPTED) {
             return createStatusCodeResponse(
