@@ -74,6 +74,27 @@ export const getGroupDataByTeamLeaderId = async (teamLeaderId: string) => {
     return result;
 };
 
+export const getGroupDataById = async (groupId: string) => {
+    const result = await db
+        .select({
+            userId: users.id,
+            name: users.name,
+            surname: users.surname,
+            role: users.role,
+            groupId: groups.id,
+            groupName: groups.name,
+            holidays: availableHolidays.holiday,
+            holidaysUponRequest: availableHolidays.holidayUponRequest,
+        })
+        .from(users)
+        .innerJoin(userGroups, eq(users.id, userGroups.userId))
+        .innerJoin(groups, eq(userGroups.groupId, groups.id))
+        .leftJoin(availableHolidays, eq(users.id, availableHolidays.userId))
+        .where(eq(groups.id, groupId));
+
+    return result;
+};
+
 export const getAllUsersData = async () => {
     const result = await db
         .select({

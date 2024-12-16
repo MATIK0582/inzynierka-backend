@@ -10,6 +10,7 @@ import { ownData } from '../../../controllers/user/get/ownData.controller';
 import { employeeData } from '../../../controllers/user/get/employeeData.controller';
 import { allUsersData } from '../../../controllers/user/get/allUsersData.controller';
 import { groupUsersData } from '../../../controllers/user/get/groupData.controller';
+import { groupUsersDataTemp } from '../../../controllers/user/get/groupDataTemp.controller';
 
 const createUserPost = async (req: Request, res: Response): Promise<void> => {
     const { name, surname, email, password }: UsersTypes = req.body;
@@ -36,7 +37,6 @@ const getEmployeeDataPost = async (req: AuthenticatedRequest, res: Response): Pr
     const userRole = req.user.role;
     const { employeeId } = req.body;
 
-    console.log("AAAA")
     console.log(employeeId)
 
     const response = await employeeData(employeeId, userRole);
@@ -51,6 +51,18 @@ const groupUsersDataGet = async (req: AuthenticatedRequest, res: Response): Prom
     const userRole = req.user.role;
 
     const response = await groupUsersData(userId);
+
+    res.status(response.json.statusCode).json(response.json);
+
+    return;
+};
+
+const groupUsersDataPost = async (req: AuthenticatedRequest, res: Response): Promise<void> => {
+    // const userId = req.user.id;
+    // const userRole = req.user.role;
+    const { groupId } = req.body;
+
+    const response = await groupUsersDataTemp(groupId);
 
     res.status(response.json.statusCode).json(response.json);
 
@@ -95,6 +107,13 @@ const GROUP_DATA_GET_ROUTE: RouteDescription<AuthenticatedRequest> = {
     middlewares: [verifyAccessToken],
 };
 
+const GROUP_DATA_POST_ROUTE: RouteDescription<AuthenticatedRequest> = {
+    method: HttpMethod.POST,
+    url: '/user/data/group',
+    handler: groupUsersDataPost,
+    middlewares: [verifyAccessToken],
+};
+
 const ALL_USERS_DATA_GET_ROUTE: RouteDescription<AuthenticatedRequest> = {
     method: HttpMethod.GET,
     url: '/user/data/all',
@@ -102,4 +121,4 @@ const ALL_USERS_DATA_GET_ROUTE: RouteDescription<AuthenticatedRequest> = {
     middlewares: [verifyAccessToken],
 };
 
-export default [CREATE_USER_POST_ROUTE, OWN_DATA_GET_ROUTE, GET_EMPLOYEE_DATA_POST_ROUTE, GROUP_DATA_GET_ROUTE, ALL_USERS_DATA_GET_ROUTE];
+export default [CREATE_USER_POST_ROUTE, OWN_DATA_GET_ROUTE, GET_EMPLOYEE_DATA_POST_ROUTE, GROUP_DATA_GET_ROUTE, GROUP_DATA_POST_ROUTE, ALL_USERS_DATA_GET_ROUTE];

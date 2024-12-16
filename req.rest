@@ -119,3 +119,20 @@ Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU4ZDdlODc0L
 }
 
 ###
+
+POST http://localhost:5000/group/member/add
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU4ZDdlODc0LWQyMmYtNGFmMi1iM2FhLWZmY2M2NjgwMzA0YyIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTczNDM3MTA2NywiZXhwIjoxNzM0MzcxOTY3fQ.ns1rzfXjzWZi6FemxGLzYWIx2FrJILu4ddBn3Se24OzQ1kO5Rf6jCw5clJTQKhfLrR1iYd5ZEk3-VeMEdDgdXA
+
+{
+    "employeeId": "4ee3d24b-8829-40ff-9e3c-da2d2c2d4204",
+    "groupId": "29c32f52-dd94-4102-b57f-429043925460"
+}
+
+###
+
+GET http://localhost:5000/group/all
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU4ZDdlODc0LWQyMmYtNGFmMi1iM2FhLWZmY2M2NjgwMzA0YyIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTczNDM3MjA2OSwiZXhwIjoxNzM0MzcyOTY5fQ.TWkP0F9FNTgDX4mjOsHrbIbgO3iiybu1U-kvyk2XVwVevZsqht9ifkCBWtdiyoUZWFaBAB0CpG0Rbeb4Qt2KMg
+
+###

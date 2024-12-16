@@ -1,46 +1,40 @@
 import { createStatusCodeResponse, HTTP_CODES, StatusCode } from '../../../utils/router/statusCodes';
 import { addUserToGroup, insertGroup } from '../../../utils/queries/groups/groupQueries';
-import { updateUserRole } from '../../../utils/queries/users/userQueries';
 import { Roles } from '../../../utils/database/models/roles';
-import { validateRepeatedName } from '../../validations/groups.validator';
 import { uuidv4Validator } from '../../validations/uuidv4.validator';
 
-export const addGroup = async (userRole: Roles, name: string, leaderId: string): Promise<StatusCode> => {
+export const addMember = async (userRole: Roles, userId: string, groupId: string): Promise<StatusCode> => {
     try {
         if (userRole === Roles.USER || userRole === Roles.TEAM_LEADER) {
             return createStatusCodeResponse(
                 HTTP_CODES.FORBIDDEN,
-                'Not authorized to create groups',
-                'Brak uprawnień do tworzenia grup',
+                'Not authorized to add members to group',
+                'Brak uprawnień do dodawania członków grupy',
             );
         }
 
-        const isValidLeaderId = uuidv4Validator(leaderId);
-        if (!isValidLeaderId) {
+        const isValidUserId= uuidv4Validator(userId);
+        if (!isValidUserId) {
             return createStatusCodeResponse(
                 HTTP_CODES.BAD_REQUEST,
-                'Specified team leader UUID is not valid',
-                'Podane UUID lidera zespołu nie jest poprawne',
+                'Specified member UUID is not valid',
+                'Podane UUID użytkownika nie jest poprawne',
             );
         }
 
-        const isRepeatedName = await validateRepeatedName(name);
-        if (isRepeatedName) {
+        const isValidGroupId = uuidv4Validator(groupId);
+        if (!isValidGroupId) {
             return createStatusCodeResponse(
                 HTTP_CODES.BAD_REQUEST,
-                'Other group already exists with that name',
-                'Istnieje już grupa o takiej nazwie',
+                'Specified group UUID is not valid',
+                'Podane UUID grupy nie jest poprawne',
             );
         }
-
-        const groupData = await insertGroup({ name, leaderId });
 
         // @TODO: remove from other groups?
-        await addUserToGroup(leaderId, groupData[0].id)
+        await addUserToGroup(userId, groupId)
 
-        await updateUserRole(leaderId, Roles.TEAM_LEADER);
-
-        return createStatusCodeResponse(HTTP_CODES.CREATED, 'Group added', 'Dodano grupe');
+        return createStatusCodeResponse(HTTP_CODES.CREATED, 'Member added', 'Dodano członka grupy');
     } catch (error: any) {
         // @FIXME: ADD PROPER ERROR HANDLING
         console.log(error);
