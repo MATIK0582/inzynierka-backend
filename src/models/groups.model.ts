@@ -15,6 +15,8 @@ export const groups = pgTable('groups', {
     updatedAt: timestamp('updated_at').defaultNow().notNull().$onUpdate(() => new Date()),
 });
 
+export type GroupsTypes = typeof groups.$inferInsert;
+
 export const groupsRelations = relations(groups, ({ one, many }) => ({
     user: one(users, {
         fields: [groups.leaderId],

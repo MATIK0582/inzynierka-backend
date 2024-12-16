@@ -3,6 +3,7 @@ import { Router } from 'express';
 import HOME_ROUTES from './routes/home.routes';
 import USER_ROUTES from './routes/users/user.routes';
 import HOLIDAY_ROUTES from './routes/holiday/holiday.routes'
+import GROUP_ROUTES from './routes/groups/groups.routes';
 import LOGIN_POST_ROUTE from './routes/auth/logIn.routes';
 import LOGOUT_DELETE_ROUTE from './routes/auth/logOut.routes';
 import REFRESH_TOKEN_POST_ROUTE from './routes/auth/token.routes';
@@ -29,6 +30,7 @@ const ROUTES: RouteDescription[] = [
     ...HOME_ROUTES,
     ...USER_ROUTES,
     ...HOLIDAY_ROUTES,
+    ...GROUP_ROUTES,
     ...LOGIN_POST_ROUTE,
     ...LOGOUT_DELETE_ROUTE,
     ...REFRESH_TOKEN_POST_ROUTE,

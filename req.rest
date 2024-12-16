@@ -106,4 +106,16 @@ Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImZkNzZiYmNhL
 {
     "employeeId": "3874b1ed-345b-419f-8623-be7f5bec5a20"
 }
+
+###
+
+POST http://localhost:5000/group/add
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU4ZDdlODc0LWQyMmYtNGFmMi1iM2FhLWZmY2M2NjgwMzA0YyIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTczNDM2MzUyMywiZXhwIjoxNzM0MzY0NDIzfQ.0MY1xUa-8mm5x0Z0ihy7OEN2lZmTUfNFHVv4eaBhjXObXWZ0JXzbeArLytzqJ5Wvpfnp8hUhm_d-dyQ0q4VCMg
+
+{
+    "name": "Kadry",
+    "leaderId": "e911221b-c61b-4633-95ea-02f394dcc94c"
+}
+
 ###

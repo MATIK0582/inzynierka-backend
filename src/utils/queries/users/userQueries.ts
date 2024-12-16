@@ -1,10 +1,11 @@
-import { eq } from 'drizzle-orm';
+import { eq, ne } from 'drizzle-orm';
 
 import { db } from '../../../config/config';
 import { users } from '../../../models/users.model';
 import { availableHolidays } from '../../../models/availableHolidays.model';
 import { groups } from '../../../models/groups.model';
 import { userGroups } from '../../../models/userGroups.model';
+import { Roles } from '../../database/models/roles';
 
 export const getUserByEmail = async (email: string) => {
     const user = await db.query.users.findFirst({
@@ -20,6 +21,15 @@ export const getUserById = async (userId: string) => {
     });
 
     return user;
+};
+
+export const updateUserRole = async (userId: string, newRole: Roles) => {
+    await db
+        .update(users)
+        .set({
+            role: newRole,
+        })
+        .where(eq(users.id, userId));
 };
 
 export const getUserDataById = async (userId: string) => {
