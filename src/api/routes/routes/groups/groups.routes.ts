@@ -8,6 +8,7 @@ import { addGroup } from '../../../controllers/groups/addGroup.controller';
 import { addMember } from '../../../controllers/groups/addMember.controller';
 import { allGroups } from '../../../controllers/groups/get/allGroups.controller';
 import { deleteGroup } from '../../../controllers/groups/deleteGroup.controller';
+import { removeMember } from '../../../controllers/groups/removeMember.controller';
 
 const addGroupPost = async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     // const userId = req.user.id;
@@ -47,6 +48,18 @@ const addMemberPost = async (req: AuthenticatedRequest, res: Response): Promise<
     return;
 };
 
+const removeMemberDelete = async (req: AuthenticatedRequest, res: Response): Promise<void> => {
+    // const userId = req.user.id;
+    const userRole = req.user.role;
+    const { employeeId, groupId } = req.body;
+
+    const response = await removeMember(userRole, employeeId, groupId);
+
+    res.status(response.json.statusCode).json(response.json);
+
+    return;
+};
+
 const allGroupsGet = async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     // const userId = req.user.id;
     const userRole = req.user.role;
@@ -79,6 +92,13 @@ const ADD_MEMBER_POST_ROUTE: RouteDescription<AuthenticatedRequest> = {
     middlewares: [verifyAccessToken],
 };
 
+const REMOVE_MEMBER_DELETE_ROUTE: RouteDescription<AuthenticatedRequest> = {
+    method: HttpMethod.DELETE,
+    url: '/group/member/delete',
+    handler: removeMemberDelete,
+    middlewares: [verifyAccessToken],
+};
+
 const ADD_MEMBER_GET_ROUTE: RouteDescription<AuthenticatedRequest> = {
     method: HttpMethod.GET,
     url: '/group/all',
@@ -86,4 +106,4 @@ const ADD_MEMBER_GET_ROUTE: RouteDescription<AuthenticatedRequest> = {
     middlewares: [verifyAccessToken],
 };
 
-export default [ADD_GROUP_POST_ROUTE, ADD_MEMBER_POST_ROUTE, ADD_MEMBER_GET_ROUTE, DELETE_GROUP_DELETE_ROUTE];
+export default [ADD_GROUP_POST_ROUTE, ADD_MEMBER_POST_ROUTE, ADD_MEMBER_GET_ROUTE, DELETE_GROUP_DELETE_ROUTE, REMOVE_MEMBER_DELETE_ROUTE];

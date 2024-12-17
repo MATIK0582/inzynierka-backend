@@ -146,3 +146,14 @@ Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU4ZDdlODc0L
 }
 
 ###
+
+DELETE http://localhost:5000/group/member/delete
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU4ZDdlODc0LWQyMmYtNGFmMi1iM2FhLWZmY2M2NjgwMzA0YyIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTczNDQyMzg0NSwiZXhwIjoxNzM0NDI0NzQ1fQ.nOJdOLoST3P-f1CNDgqduYeEr44g45bMjj1zYGuPqSI85VWjIOw2sq5CbXugqST4H1MUFh3nz-KiytpF3TxOUw
+
+{
+    "employeeId": "4ee3d24b-8829-40ff-9e3c-da2d2c2d4204",
+    "groupId": "458d0e8a-00e6-4ee0-90f1-395527eddeae"
+}
+
+###

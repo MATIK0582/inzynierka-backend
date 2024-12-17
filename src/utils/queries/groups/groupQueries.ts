@@ -1,4 +1,4 @@
-import { sql, eq } from 'drizzle-orm';
+import { sql, eq, and } from 'drizzle-orm';
 import { db } from '../../../config/config';
 import { groups, GroupsTypes } from '../../../models/groups.model';
 import { userGroups } from '../../../models/userGroups.model';
@@ -70,6 +70,12 @@ export const deleteUsersFromGroup = async (groupId: string) => {
 
 export const deleteGroupFromDB = async (groupId: string) => {
     const result = await db.delete(groups).where(eq(groups.id, groupId));
+
+    return result;
+};
+
+export const removeUserFromGroup = async (userId: string, groupId: string) => {
+    const result = await db.delete(userGroups).where(and(eq(userGroups.groupId, groupId), eq(userGroups.userId, userId)));
 
     return result;
 };
