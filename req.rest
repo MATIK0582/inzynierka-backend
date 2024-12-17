@@ -136,3 +136,13 @@ Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU4ZDdlODc0LWQyMmYtNGFmMi1iM2FhLWZmY2M2NjgwMzA0YyIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTczNDM3MjA2OSwiZXhwIjoxNzM0MzcyOTY5fQ.TWkP0F9FNTgDX4mjOsHrbIbgO3iiybu1U-kvyk2XVwVevZsqht9ifkCBWtdiyoUZWFaBAB0CpG0Rbeb4Qt2KMg
 
 ###
+
+DELETE  http://localhost:5000/group/delete
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU4ZDdlODc0LWQyMmYtNGFmMi1iM2FhLWZmY2M2NjgwMzA0YyIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTczNDQxOTg3NCwiZXhwIjoxNzM0NDIwNzc0fQ.vUmskwLyt2m0kbQqgnJiw0YPlhb0O33TAnNHbYWGlYD3AgbD49Rm0DQd_GbhTlr6Rn9v1G2cQ4rGT_CVWNaRZA
+
+{
+    "groupId": "dedab35a-804e-46ce-be2c-b3c4fefabe51"
+}
+
+###

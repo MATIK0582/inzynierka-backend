@@ -7,6 +7,7 @@ import { AuthenticatedRequest } from '../../../../utils/router/requestDescriptio
 import { addGroup } from '../../../controllers/groups/addGroup.controller';
 import { addMember } from '../../../controllers/groups/addMember.controller';
 import { allGroups } from '../../../controllers/groups/get/allGroups.controller';
+import { deleteGroup } from '../../../controllers/groups/deleteGroup.controller';
 
 const addGroupPost = async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     // const userId = req.user.id;
@@ -16,6 +17,18 @@ const addGroupPost = async (req: AuthenticatedRequest, res: Response): Promise<v
     const response = await addGroup(userRole, name, leaderId);
 
     console.log(response);
+
+    res.status(response.json.statusCode).json(response.json);
+
+    return;
+};
+
+const deleteGroupDelete = async (req: AuthenticatedRequest, res: Response): Promise<void> => {
+    // const userId = req.user.id;
+    const userRole = req.user.role;
+    const { groupId } = req.body;
+
+    const response = await deleteGroup(userRole, groupId);
 
     res.status(response.json.statusCode).json(response.json);
 
@@ -52,6 +65,13 @@ const ADD_GROUP_POST_ROUTE: RouteDescription<AuthenticatedRequest> = {
     middlewares: [verifyAccessToken],
 };
 
+const DELETE_GROUP_DELETE_ROUTE: RouteDescription<AuthenticatedRequest> = {
+    method: HttpMethod.DELETE,
+    url: '/group/delete',
+    handler: deleteGroupDelete,
+    middlewares: [verifyAccessToken],
+};
+
 const ADD_MEMBER_POST_ROUTE: RouteDescription<AuthenticatedRequest> = {
     method: HttpMethod.POST,
     url: '/group/member/add',
@@ -66,4 +86,4 @@ const ADD_MEMBER_GET_ROUTE: RouteDescription<AuthenticatedRequest> = {
     middlewares: [verifyAccessToken],
 };
 
-export default [ADD_GROUP_POST_ROUTE, ADD_MEMBER_POST_ROUTE, ADD_MEMBER_GET_ROUTE];
+export default [ADD_GROUP_POST_ROUTE, ADD_MEMBER_POST_ROUTE, ADD_MEMBER_GET_ROUTE, DELETE_GROUP_DELETE_ROUTE];
